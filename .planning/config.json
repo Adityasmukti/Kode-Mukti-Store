@@ -1,0 +1,9 @@
+{
+  "response_language": "id",
+  "workflow": {
+    "discuss_mode": "discuss",
+    "text_mode": false,
+    "auto_advance": false
+  },
+  "commit_docs": false
+}
