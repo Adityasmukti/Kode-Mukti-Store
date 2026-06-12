@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\UploadedFile;
@@ -156,5 +157,50 @@ class ScaffoldSmokeTest extends TestCase
         $this->assertArrayHasKey('email', $leadRules);
         $this->assertCount(1, $leadRules,
             'StoreLeadRequest should only validate the email field');
+    }
+
+    public function test_admin_seeder_reads_env_credentials(): void
+    {
+        // Set fake env credentials
+        putenv('ADMIN_EMAIL=admin@example.com');
+        putenv('ADMIN_PASSWORD=secure-password-123');
+
+        // Run the seeder
+        Artisan::call('db:seed', ['--class' => 'Database\Seeders\AdminUserSeeder']);
+
+        // Assert admin user was created
+        $this->assertDatabaseHas('users', [
+            'email' => 'admin@example.com',
+            'is_admin' => 1,
+        ]);
+
+        // Clean up env
+        putenv('ADMIN_EMAIL');
+        putenv('ADMIN_PASSWORD');
+    }
+
+    public function test_admin_seeder_skips_when_env_empty(): void
+    {
+        // Ensure env vars are not set
+        putenv('ADMIN_EMAIL');
+        putenv('ADMIN_PASSWORD');
+
+        // Run the seeder - should not crash
+        $exitCode = Artisan::call('db:seed', ['--class' => 'Database\Seeders\AdminUserSeeder']);
+
+        // Assert command succeeded (warned and skipped)
+        $this->assertEquals(0, $exitCode);
+
+        // Assert no admin user was created
+        $this->assertDatabaseMissing('users', ['is_admin' => 1]);
+    }
+
+    public function test_proof_preview_route_requires_auth(): void
+    {
+        $response = $this->get(route('admin.orders.proof', ['order' => 1, 'proof' => 1]));
+
+        // Unauthenticated request should redirect to login
+        $response->assertRedirect();
+        $response->assertRedirectContains('admin/login');
     }
 }
