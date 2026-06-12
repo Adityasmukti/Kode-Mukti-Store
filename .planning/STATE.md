@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: active
-last_updated: "2026-06-12T18:03:43Z"
+last_updated: "2026-06-12T18:23:30Z"
 progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 6
-  completed_plans: 1
-  percent: 17
+  completed_plans: 2
+  percent: 33
 ---
 
 # State
@@ -20,8 +20,8 @@ Project planning initialized for MVP landing page.
 
 ## Last Session
 
-- Stopped at: Phase 01 Plan 01 complete (scaffold)
-- Resume file: `.planning/phases/01-mvp-landing-page-dan-qris-manual/01-02-PLAN.md`
+- Stopped at: Phase 01 Plan 02 complete (data contracts)
+- Resume file: `.planning/phases/01-mvp-landing-page-dan-qris-manual/01-03-PLAN.md`
 - Updated: 2026-06-12
 
 ## Accumulated Context
@@ -40,3 +40,8 @@ Project planning initialized for MVP landing page.
 - PROMO_DEADLINE reads from environment with safe non-expired fallback 2026-07-31.
 - .env.example contains non-secret config names only — no secrets committed.
 - Products config uses env() with sensible defaults, not hardcoded values.
+- AdminUserSeeder uses getenv() directly for runtime env reading (not env() helper).
+- Auth middleware redirects guests to admin.login and authenticated users to admin.orders.index.
+- Public buyer routes use {invoice_token} or {download_token} per D-01, never numeric IDs.
+- UploadPaymentProofRequest enforces mimes:jpg,jpeg,png,webp with max:4096 per D-08.
+- RejectPaymentRequest enforces reject_reason required string max:500 per D-07.
