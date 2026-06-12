@@ -165,8 +165,9 @@ class ScaffoldSmokeTest extends TestCase
         putenv('ADMIN_EMAIL=admin@example.com');
         putenv('ADMIN_PASSWORD=secure-password-123');
 
-        // Run the seeder
-        Artisan::call('db:seed', ['--class' => 'Database\Seeders\AdminUserSeeder']);
+        // Run the seeder directly (not via Artisan::call to avoid env reset)
+        $seeder = new \Database\Seeders\AdminUserSeeder;
+        $seeder->run();
 
         // Assert admin user was created
         $this->assertDatabaseHas('users', [
@@ -185,11 +186,9 @@ class ScaffoldSmokeTest extends TestCase
         putenv('ADMIN_EMAIL');
         putenv('ADMIN_PASSWORD');
 
-        // Run the seeder - should not crash
-        $exitCode = Artisan::call('db:seed', ['--class' => 'Database\Seeders\AdminUserSeeder']);
-
-        // Assert command succeeded (warned and skipped)
-        $this->assertEquals(0, $exitCode);
+        // Run the seeder directly - should not crash
+        $seeder = new \Database\Seeders\AdminUserSeeder;
+        $seeder->run();
 
         // Assert no admin user was created
         $this->assertDatabaseMissing('users', ['is_admin' => 1]);
