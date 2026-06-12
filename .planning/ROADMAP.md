@@ -24,7 +24,7 @@ Project ini dibangun sebagai MVP Laravel untuk menjual ebook digital dengan land
 **Plans**: 6 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Laravel scaffold and product configuration (wave 1)
+- [x] 01-01-PLAN.md — Laravel scaffold and product configuration (wave 1)
 - [ ] 01-02-PLAN.md — Data model, migrations, route contracts, controller/request shells, admin seeder, scaffold smoke tests (wave 2)
 - [ ] 01-03-PLAN.md — Private asset fixtures, base Blade layout, CSS design tokens, test fixture files (wave 2)
 - [ ] 01-04-PLAN.md — Public landing page and lead magnet instant download flow (wave 3)
@@ -35,4 +35,4 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. MVP Landing Page dan QRIS Manual | 0/6 | Not started | - |
+| 1. MVP Landing Page dan QRIS Manual | 1/6 | In progress | - |
