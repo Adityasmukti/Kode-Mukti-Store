@@ -3,21 +3,62 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLeadRequest;
+use App\Models\Lead;
+use Illuminate\Support\Str;
 
 class LeadMagnetController extends Controller
 {
     public function store(StoreLeadRequest $request)
     {
-        // Business logic will be implemented in Plan 01-04
+        $email = $request->validated('email');
+
+        $lead = Lead::updateOrCreate(
+            ['email' => $email],
+            [
+                'download_token' => $this->generateUniqueToken(),
+                'first_opted_at' => now(),
+                'last_opted_at' => now(),
+            ]
+        );
+
+        if ($lead->wasRecentlyCreated === false) {
+            $lead->updateQuietly([
+                'last_opted_at' => now(),
+            ]);
+        }
+
+        return redirect()->route('lead-magnet.show', $lead->download_token);
     }
 
     public function downloadPage(string $downloadToken)
     {
-        // Business logic will be implemented in Plan 01-04
+        $lead = Lead::where('download_token', $downloadToken)->firstOrFail();
+
+        return view('lead-magnet.show', [
+            'lead' => $lead,
+        ]);
     }
 
     public function download(string $downloadToken)
     {
-        // Business logic will be implemented in Plan 01-04
+        $lead = Lead::where('download_token', $downloadToken)->firstOrFail();
+
+        $leadMagnetPath = config('products.lead_magnet_path');
+
+        abort_unless(\Illuminate\Support\Facades\Storage::disk('local')->exists($leadMagnetPath), 404);
+
+        return \Illuminate\Support\Facades\Storage::disk('local')->download(
+            $leadMagnetPath,
+            '50-prompt-pemasaran-gratis.txt'
+        );
+    }
+
+    private function generateUniqueToken(): string
+    {
+        do {
+            $token = Str::random(48);
+        } while (Lead::where('download_token', $token)->exists());
+
+        return $token;
     }
 }
