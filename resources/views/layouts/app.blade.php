@@ -8,6 +8,7 @@
     <title>@yield('title', config('app.name', 'Kode Mukti'))</title>
 
     @vite('resources/css/app.css')
+    @stack('styles')
 </head>
 <body>
     <div class="page-wrapper">
@@ -39,5 +40,7 @@
             @yield('content')
         </main>
     </div>
+
+    @stack('scripts')
 </body>
 </html>
