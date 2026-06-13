@@ -4,21 +4,36 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLoginRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function create()
     {
-        // Business logic will be implemented in Plan 01-06
+        return view('admin.auth.login');
     }
 
     public function store(AdminLoginRequest $request)
     {
-        // Business logic will be implemented in Plan 01-06
+        if (Auth::attempt($request->validated())) {
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('admin.orders.index'));
+        }
+
+        return back()->withErrors([
+            'email' => 'Email atau password tidak valid.',
+        ])->onlyInput('email');
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
-        // Business logic will be implemented in Plan 01-06
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.login');
     }
 }

@@ -510,6 +510,202 @@ a:hover {
     font-size: 13px;
 }
 
+/* === Admin Dashboard === */
+.admin-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.admin-logout-form {
+    margin: 0;
+}
+
+.admin-empty {
+    text-align: center;
+    padding: 48px 24px;
+}
+
+/* Desktop Table */
+.admin-table-wrapper {
+    overflow-x: auto;
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .admin-table-wrapper {
+        display: block;
+    }
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-card);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-default);
+}
+
+.admin-table th {
+    background-color: var(--color-bg);
+    font-size: var(--text-label-size);
+    font-weight: var(--text-label-weight);
+    color: var(--color-text-secondary);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border-default);
+}
+
+.admin-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border-warm);
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tr:hover {
+    background-color: #FFFAF5;
+}
+
+/* Admin Actions */
+.admin-actions {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.admin-action-form {
+    margin: 0;
+}
+
+.admin-reject-details {
+    position: relative;
+}
+
+.admin-reject-details summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.admin-reject-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.admin-reject-form {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border-default);
+    border-radius: 8px;
+    padding: 12px;
+    min-width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 4px;
+}
+
+/* Mobile Cards */
+.admin-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (min-width: 768px) {
+    .admin-cards {
+        display: none;
+    }
+}
+
+.admin-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-card-highlight {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.admin-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.admin-card-body p {
+    margin: 2px 0;
+    font-size: 14px;
+}
+
+.admin-card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid var(--color-border-warm);
+    padding-top: 12px;
+}
+
+.admin-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Admin Login Page */
+.admin-login-page {
+    max-width: 400px;
+    margin: 64px auto;
+}
+
+.admin-login-card {
+    padding: 32px;
+}
+
+/* Admin Proof Page */
+.admin-proof-page {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.admin-proof-header {
+    margin-bottom: 16px;
+}
+
+.admin-proof-card {
+    padding: 24px;
+}
+
+.admin-proof-meta p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.admin-proof-image {
+    text-align: center;
+    padding: 16px;
+    background-color: var(--color-bg);
+    border-radius: 8px;
+}
+
 /* === Desktop / Responsive Overrides === */
 @media (min-width: 768px) {
     .main-content {

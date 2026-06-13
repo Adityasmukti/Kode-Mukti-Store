@@ -37,7 +37,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         ->middleware('throttle:login')
         ->name('login.store');
     Route::post('/logout', [Admin\AuthController::class, 'destroy'])
-        ->middleware('guest')
+        ->middleware('auth')
         ->name('logout');
 
     Route::middleware('auth')->group(function () {
