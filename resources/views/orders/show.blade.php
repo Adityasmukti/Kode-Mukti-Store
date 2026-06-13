@@ -30,7 +30,10 @@
             <div class="qris-section">
                 <img src="{{ config('products.qris_image_path') }}"
                      alt="QRIS Pembayaran"
-                     class="qris-image">
+                     class="qris-image"
+                     width="300" height="300"
+                     loading="lazy"
+                     fetchpriority="high">
                 <p class="label-text text-secondary mt-sm text-center">
                     Scan QRIS di atas untuk melakukan pembayaran
                 </p>
@@ -111,7 +114,8 @@
                         Pembayaran kamu telah terverifikasi. Klik tombol di bawah untuk mendownload produk.
                     </p>
                     <a href="{{ route('orders.download', $order->invoice_token) }}"
-                       class="btn btn-primary btn-full">
+                       class="btn btn-primary btn-full"
+                       data-umami-event="Download Ebook">
                         Download ZIP Ebook
                     </a>
                 </div>

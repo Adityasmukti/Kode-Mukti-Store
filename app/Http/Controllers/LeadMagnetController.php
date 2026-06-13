@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLeadRequest;
 use App\Models\Lead;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class LeadMagnetController extends Controller
@@ -26,6 +27,11 @@ class LeadMagnetController extends Controller
                 'last_opted_at' => now(),
             ]);
         }
+
+        Log::info('Umami Event: Lead Captured', [
+            'email' => $lead->email,
+            'download_token' => $lead->download_token,
+        ]);
 
         return redirect()->route('lead-magnet.show', $lead->download_token);
     }

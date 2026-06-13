@@ -6,11 +6,12 @@ Project ini dibangun sebagai MVP Laravel untuk menjual ebook digital dengan land
 
 ## Phases
 
-- [ ] **Phase 1: MVP Landing Page dan QRIS Manual** - Landing page, checkout QRIS manual, upload bukti bayar, admin verifikasi, download ebook, dan lead magnet instant download.
+- [x] **Phase 1: MVP Landing Page dan QRIS Manual** - Landing page, checkout QRIS manual, upload bukti bayar, admin verifikasi, download ebook, dan lead magnet instant download.
+- [ ] **Phase 2: Optimasi Landing Page** - Analytics, conversion tracking, A/B testing framework, dan optimasi kecepatan.
 
 ## Phase Details
 
-### Phase 1: MVP Landing Page dan QRIS Manual
+### Phase 1: MVP Landing Page dan QRIS Manual (✅ Complete)
 **Goal**: Membuat MVP landing page Laravel yang bisa menjual ebook menggunakan QRIS manual dan memberikan lead magnet instant download.
 **Depends on**: Nothing (first phase)
 **Requirements**: [REQ-001, REQ-002]
@@ -31,8 +32,25 @@ Plans:
 - [x] 01-05-PLAN.md — Buyer order, QRIS invoice states, and private proof upload/re-upload (wave 3)
 - [x] 01-06-PLAN.md — Admin login/dashboard, confirm/reject, proof preview route, and protected ebook ZIP download (wave 4)
 
+### Phase 2: Optimasi Landing Page
+**Goal**: Memasang analytics, conversion tracking, dan optimasi kecepatan landing page untuk meningkatkan konversi.
+**Depends on**: Phase 1
+**Requirements**: TBD
+**Success Criteria** (what must be TRUE):
+  1. Admin dapat melihat analytics pengunjung landing page via Umami self-hosted.
+  2. Conversion tracking terpasang untuk order, lead magnet, CTA clicks, dan download.
+  3. Optimasi performa (lazy loading, CSS eksternal, meta tags, preconnect).
+**Plans**: 2 plans
+
+Plans:
+- [x] 02-01-PLAN.md — Umami analytics Docker Compose, tracking script, conversion events, tests
+- [x] 02-02-PLAN.md — Performance optimization: CSS extraction, lazy loading, meta tags, preconnect, production build
+
+**Deferred**: A/B testing framework — masih perlu diskusi pendekatan (custom Laravel vs third-party)
+
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. MVP Landing Page dan QRIS Manual | 6/6 | ✅ Complete | 2026-06-13 |
+| 2. Optimasi Landing Page | 2/2 | ✅ Complete | 2026-06-13 |

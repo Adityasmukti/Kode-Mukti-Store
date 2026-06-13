@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -19,6 +20,12 @@ class OrderController extends Controller
             'status' => 'pending',
         ]);
 
+        Log::info('Umami Event: Order Created', [
+            'invoice_token' => $order->invoice_token,
+            'email' => $order->email,
+        ]);
+
         return redirect()->route('orders.show', $order->invoice_token);
     }
+}
 }

@@ -21,7 +21,7 @@
                             <span class="original-price">Rp {{ number_format($originalPrice, 0, ',', '.') }}</span>
                             <span class="current-price display-text text-accent">Rp {{ number_format($price, 0, ',', '.') }}</span>
                         </div>
-                        <a href="#checkout" class="btn btn-primary btn-full btn-hero">Dapatkan Sekarang</a>
+                        <a href="#checkout" class="btn btn-primary btn-full btn-hero" data-umami-event="CTA Click">Dapatkan Sekarang</a>
                         <p class="text-muted mt-sm" style="font-size:14px;">
                             &#10003; Akses langsung &middot; File ZIP &middot; Tanpa login
                         </p>
@@ -190,7 +190,7 @@
                                    placeholder="08123456789" required maxlength="32">
                             <div class="error-text" id="whatsapp-error" role="alert"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-full btn-hero">Dapatkan Sekarang</button>
+                        <button type="submit" class="btn btn-primary btn-full btn-hero" data-umami-event="CTA Click">Dapatkan Sekarang</button>
                         <p class="text-center text-muted mt-sm" style="font-size:14px;">
                             &#10003; QRIS manual &middot; Download setelah verifikasi
                         </p>
@@ -246,7 +246,7 @@
                                placeholder="email@contoh.com" required maxlength="255">
                         <div class="error-text" id="lead-email-error" role="alert"></div>
                     </div>
-                    <button type="submit" class="btn btn-secondary btn-full">Kirim &amp; Download Gratis</button>
+                    <button type="submit" class="btn btn-secondary btn-full" data-umami-event="Lead Captured">Kirim &amp; Download Gratis</button>
                     <p class="text-muted mt-sm" style="font-size:14px;">
                         &#10003; Email-only &middot; Instant download &middot; Tidak ada spam
                     </p>
@@ -307,200 +307,7 @@
 @endsection
 
 @push('styles')
-<style>
-    /* Hero Section */
-    .hero {
-        padding: 48px 0 24px;
-        background: linear-gradient(180deg, #FFF7ED 0%, #FFFFFF 100%);
-    }
-    .hero-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
-    }
-    .hero-headline {
-        margin: 0 0 16px;
-    }
-    .hero-subcopy {
-        margin: 0 0 24px;
-        max-width: 560px;
-    }
-    .hero-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-    .price-anchor {
-        display: flex;
-        align-items: baseline;
-        gap: 12px;
-    }
-    .original-price {
-        font-size: 20px;
-        color: var(--color-text-muted);
-        text-decoration: line-through;
-    }
-    .current-price {
-        font-weight: 700;
-    }
-    .btn-hero {
-        font-size: 18px;
-        padding: 12px 32px;
-    }
-    .hero-card {
-        text-align: left;
-    }
-    .hero-card-header {
-        margin-bottom: 12px;
-    }
-    .hero-bundles {
-        list-style: none;
-        padding: 0;
-        margin: 8px 0 0;
-    }
-    .hero-bundles li {
-        padding: 4px 0;
-        font-size: 15px;
-        color: var(--color-text-secondary);
-    }
-    .hero-card-footer {
-        margin-top: 16px;
-    }
-
-    /* Section Base */
-    .section {
-        padding: 48px 0;
-    }
-    .section-problem {
-        background-color: var(--color-card);
-    }
-    .section-solution {
-        background-color: var(--color-bg);
-    }
-
-    /* Problem Grid */
-    .problems-grid,
-    .benefits-grid,
-    .preview-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
-        margin-top: 24px;
-    }
-
-    /* Pricing Card */
-    .pricing-card {
-        max-width: 520px;
-        margin: 0 auto;
-        text-align: center;
-        border: 2px solid var(--color-accent);
-    }
-    .pricing-price {
-        margin: 16px 0;
-    }
-    .pricing-cross {
-        font-size: 22px;
-        display: block;
-    }
-    .pricing-current {
-        font-size: 48px;
-        font-weight: 700;
-        line-height: 1.1;
-    }
-    .pricing-badges {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-        margin: 16px 0 24px;
-    }
-    .checkout-form {
-        max-width: 400px;
-        margin: 0 auto;
-        text-align: left;
-    }
-
-    /* Countdown */
-    .countdown-timer {
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-        margin: 24px 0;
-    }
-    .countdown-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: var(--color-card);
-        border: 1px solid var(--color-border-warm);
-        border-radius: 12px;
-        padding: 12px 16px;
-        min-width: 72px;
-    }
-    .countdown-value {
-        font-size: 32px;
-        font-weight: 700;
-        line-height: 1.2;
-    }
-
-    /* Lead Card */
-    .lead-card {
-        max-width: 480px;
-        margin: 0 auto;
-        border: 2px solid var(--color-accent);
-    }
-    .lead-form {
-        max-width: 360px;
-        margin: 16px auto 0;
-        text-align: left;
-    }
-
-    /* FAQ */
-    .faq-list {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin-top: 24px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Desktop */
-    @media (min-width: 768px) {
-        .hero {
-            padding: 64px 0 32px;
-        }
-        .hero-grid {
-            flex-direction: row;
-            align-items: center;
-        }
-        .hero-copy {
-            flex: 1.3;
-        }
-        .hero-visual {
-            flex: 1;
-        }
-        .problems-grid,
-        .benefits-grid,
-        .preview-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-        .faq-list {
-            grid-template-columns: 1fr 1fr;
-        }
-        .section {
-            padding: 64px 0;
-        }
-        .countdown-item {
-            min-width: 96px;
-            padding: 16px 24px;
-        }
-        .countdown-value {
-            font-size: 40px;
-        }
-    }
-</style>
+    @vite('resources/css/landing.css')
 @endpush
 
 @push('scripts')

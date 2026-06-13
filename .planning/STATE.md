@@ -3,25 +3,27 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: active
-last_updated: "2026-06-13T07:24:00Z"
+last_updated: "2026-06-13T12:00:00Z"
 progress:
-  total_phases: 1
-  completed_phases: 0
-  total_plans: 6
-  completed_plans: 6
-  percent: 0
+  total_phases: 2
+  completed_phases: 2
+  total_plans: 8
+  completed_plans: 8
+  percent: 100
 ---
 
 # State
 
 ## Current Status
 
-Phase 01 complete — all 6 plans implemented. Admin authentication, manual payment verification, proof preview, protected ZIP download, and full test suite (54 tests, 258 assertions).
+Phase 01 complete — all 6 plans implemented. Admin authentication, manual payment verification, proof preview, protected ZIP download, and full test suite (61 tests planned, 54 with assertions).
+
+Phase 02 complete — all 2 plans implemented. Umami analytics Docker Compose (deploy/docker-compose.umami.yml), tracking script di Blade layout, conversion events (CTA Click, Lead Captured, Download Ebook, Order Created), performance optimization (CSS extraction to landing.css, lazy loading, meta description, preconnect), and production Vite build.
 
 ## Last Session
 
-- Stopped at: Phase 01 Plan 06 complete (admin auth, verification, protected download)
-- Resume file: (Phase 01 complete — next is Phase 02)
+- Stopped at: Phase 02 fully complete — all 8 plans implemented
+- Resume file: N/A
 - Updated: 2026-06-13
 
 ## Accumulated Context
@@ -61,3 +63,9 @@ Phase 01 complete — all 6 plans implemented. Admin authentication, manual paym
 - HTML details/summary used for Reject form reveal (no JS required).
 - CASE WHEN in ORDER BY for status priority sorting (SQLite + MySQL compatible).
 - DownloadController streams ZIP from local private disk after verified status check; no expiry or temporary URLs.
+- Umami analytics self-hosted via Docker (deploy/docker-compose.umami.yml) — port 3000, PostgreSQL.
+- Tracking script conditional: hanya dirender jika UMAMI_WEBSITE_ID diisi di .env.
+- Custom conversion events via data-umami-event attributes on CTA buttons, lead form, download button.
+- Server-side event logging via Log::info('Umami Event: ...') di controllers.
+- Landing page CSS diekstrak ke resources/css/landing.css, di-bundle via Vite.
+- A/B testing framework deferred — masih perlu diskusi pendekatan.
