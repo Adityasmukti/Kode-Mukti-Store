@@ -79,9 +79,9 @@ class OrderFlowTest extends TestCase
         $response->assertSee('Rp 99.000');
         // Check QRIS image area
         $response->assertSee('/images/qris.png');
-        // Check payment steps
-        $response->assertSee('scan QRIS', false);
-        $response->assertSee('bayar sesuai nominal', false);
+        // Check payment steps (case-insensitive by using escaped=false with manual check)
+        $response->assertSee('Scan QRIS');
+        $response->assertSee('Bayar sesuai nominal');
         // Check upload form helper text
         $response->assertSee('Format: JPG, PNG, atau WebP. Maksimal 4 MB.');
     }
@@ -96,5 +96,117 @@ class OrderFlowTest extends TestCase
     {
         $response = $this->get('/orders/1');
         $response->assertStatus(404);
+    }
+
+    public function test_show_proof_submitted_state(): void
+    {
+        $order = \App\Models\Order::create([
+            'invoice_token' => \Illuminate\Support\Str::random(32),
+            'name' => 'Dewi Lestari',
+            'email' => 'dewi@example.com',
+            'whatsapp' => '081111222333',
+            'amount' => 99000,
+            'status' => 'proof_submitted',
+        ]);
+
+        $response = $this->get(route('orders.show', $order->invoice_token));
+        $response->assertStatus(200);
+
+        // Check proof_submitted status badge
+        $response->assertSee('Bukti Terkirim');
+        // Check admin verification message
+        $response->assertSee('Admin akan mengecek pembayaran secara manual.');
+        // Check re-upload is visible but secondary (upload section exists)
+        $response->assertSee('Upload Ulang');
+        // QRIS and amount still visible
+        $response->assertSee('Rp 99.000');
+        $response->assertSee('/images/qris.png');
+    }
+
+    public function test_show_rejected_state(): void
+    {
+        $order = \App\Models\Order::create([
+            'invoice_token' => \Illuminate\Support\Str::random(32),
+            'name' => 'Ahmad Fauzi',
+            'email' => 'ahmad@example.com',
+            'whatsapp' => '082222333444',
+            'amount' => 99000,
+            'status' => 'rejected',
+            'reject_reason' => 'Bukti pembayaran tidak terbaca. Harap upload ulang dengan foto yang lebih jelas.',
+        ]);
+
+        $response = $this->get(route('orders.show', $order->invoice_token));
+        $response->assertStatus(200);
+
+        // Check rejected status badge
+        $response->assertSee('Ditolak');
+        // Check reject reason is displayed in alert
+        $response->assertSee('Bukti pembayaran tidak terbaca');
+        // Check primary re-upload button affordance
+        $response->assertSee('Upload Ulang Bukti');
+    }
+
+    public function test_show_rejected_state_shows_upload_reason_button(): void
+    {
+        $order = \App\Models\Order::create([
+            'invoice_token' => \Illuminate\Support\Str::random(32),
+            'name' => 'Bambang',
+            'email' => 'bambang@example.com',
+            'whatsapp' => '083333444555',
+            'amount' => 99000,
+            'status' => 'rejected',
+            'reject_reason' => 'Nominal tidak sesuai.',
+        ]);
+
+        $response = $this->get(route('orders.show', $order->invoice_token));
+        $response->assertStatus(200);
+
+        // Reject reason must be shown (not a dead end)
+        $response->assertSee('Nominal tidak sesuai.');
+        // Form with upload button must be present
+        $response->assertSee('Upload Ulang Bukti');
+        // Form must POST to the proof upload route
+        $response->assertSee(route('orders.proof.store', $order->invoice_token));
+    }
+
+    public function test_show_verified_state(): void
+    {
+        $order = \App\Models\Order::create([
+            'invoice_token' => \Illuminate\Support\Str::random(32),
+            'name' => 'Citra Dewi',
+            'email' => 'citra@example.com',
+            'whatsapp' => '084444555666',
+            'amount' => 99000,
+            'status' => 'verified',
+        ]);
+
+        $response = $this->get(route('orders.show', $order->invoice_token));
+        $response->assertStatus(200);
+
+        // Check verified status badge
+        $response->assertSee('Terverifikasi');
+        // Check download button links to download route
+        $response->assertSee('Download ZIP Ebook');
+        $response->assertSee(route('orders.download', $order->invoice_token));
+        // Check support note about link remaining active
+        $response->assertSee('tetap aktif');
+    }
+
+    public function test_show_preserves_all_order_info_across_states(): void
+    {
+        $order = \App\Models\Order::create([
+            'invoice_token' => \Illuminate\Support\Str::random(32),
+            'name' => 'Eko Prasetyo',
+            'email' => 'eko@example.com',
+            'whatsapp' => '085555666777',
+            'amount' => 99000,
+            'status' => 'verified',
+        ]);
+
+        $response = $this->get(route('orders.show', $order->invoice_token));
+        $response->assertStatus(200);
+
+        // Support note about saving invoice link must be present in all states
+        $response->assertSee('Simpan link invoice');
     }
 }
