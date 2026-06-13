@@ -47,6 +47,7 @@
                     <li>Bayar sesuai nominal <strong>Rp {{ number_format($order->amount, 0, ',', '.') }}</strong></li>
                     <li>Simpan bukti pembayaran (screenshot / foto) di perangkat kamu</li>
                     <li>Upload bukti pembayaran pada form di bawah</li>
+                    <li>Klik tombol WhatsApp untuk konfirmasi ke <strong>0878-7350-7353</strong></li>
                 </ol>
             </div>
 
@@ -71,7 +72,19 @@
                     </h3>
 
                     @if ($order->status === 'proof_submitted')
-                        <p class="text-secondary mb-md">Admin akan mengecek pembayaran secara manual. Jika perlu mengirim ulang, kamu bisa upload ulang di sini.</p>
+                        <div class="wa-confirmation">
+                            <p class="text-secondary mb-sm">Admin akan memproses setelah kamu kirim konfirmasi via WhatsApp.</p>
+                            <a href="https://wa.me/6287873507353?text=Kode%20Mukti%20-%20Konfirmasi%20Pembayaran%20%23{{ $order->invoice_token }}"
+                               class="btn btn-wa"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               data-umami-event="Konfirmasi WA">
+                                &#128242; Konfirmasi via WhatsApp
+                            </a>
+                            <p class="text-muted mt-sm" style="font-size:13px;">
+                                Ketuk tombol di atas untuk kirim pesan otomatis ke 0878-7350-7353
+                            </p>
+                        </div>
                     @endif
 
                     <form action="{{ route('orders.proof.store', $order->invoice_token) }}"
@@ -122,6 +135,7 @@
             @endif
 
             {{-- Support Note --}}
+            {{-- Support Note --}}
             <div class="support-note mt-lg">
                 <p class="text-muted text-center">
                     Simpan link invoice ini untuk mengecek status pembayaran dan download produk. Link ini tetap aktif.
@@ -131,3 +145,36 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+<style>
+    .btn-wa {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        background: #25D366;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    .btn-wa:hover {
+        background: #1DA851;
+    }
+    .wa-confirmation {
+        margin-bottom: 16px;
+        padding: 16px;
+        background: #F0FFF4;
+        border: 1px solid #25D366;
+        border-radius: 8px;
+        text-align: center;
+    }
+</style>
+@endpush
