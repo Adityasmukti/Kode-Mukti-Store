@@ -22,11 +22,22 @@
                         kreator konten, dan profesional yang butuh hasil cepat.
                     </p>
                     <div class="hero-actions">
-                        <div class="price-anchor">
-                            <span class="original-price">Rp {{ number_format($originalPrice, 0, ',', '.') }}</span>
-                            <span class="current-price display-text text-accent">Rp {{ number_format($price, 0, ',', '.') }}</span>
+                        <div class="price-card-hero">
+                            <div class="price-tier">
+                                <span class="price-tier-label">Harga Normal</span>
+                                <span class="price-tier-value cross">Rp {{ number_format($priceNormal, 0, ',', '.') }}</span>
+                            </div>
+                            <div class="price-tier">
+                                <span class="price-tier-label">Diskon Launching</span>
+                                <span class="price-tier-value cross">Rp {{ number_format($priceDiscount, 0, ',', '.') }}</span>
+                            </div>
+                            <div class="price-tier price-tier-highlight">
+                                <span class="badge badge-promo">PROMO 100 PEMBELI PERTAMA</span>
+                                <span class="price-tier-label">Spesial 100 Pembeli Pertama</span>
+                                <span class="price-tier-final display-text text-accent">Rp {{ number_format($priceSpecial, 0, ',', '.') }}</span>
+                            </div>
                         </div>
-                        <a href="#checkout" class="btn btn-primary btn-full btn-hero" data-umami-event="CTA Click">Dapatkan Sekarang</a>
+                        <a href="#checkout" class="btn btn-primary btn-full btn-hero" data-umami-event="CTA Click">Dapatkan Sekarang — Rp4.900</a>
                         <p class="text-muted mt-sm" style="font-size:14px;">
                             &#10003; Akses langsung &middot; File ZIP &middot; Tanpa login
                         </p>
@@ -162,11 +173,27 @@
             <div class="card pricing-card">
                 <div class="pricing-header">
                     <h2 class="heading-text text-center">Ultimate ChatGPT Mastery &amp; Prompt Swipe File</h2>
-                    <div class="pricing-price text-center">
-                        <span class="original-price pricing-cross">Rp {{ number_format($originalPrice, 0, ',', '.') }}</span>
-                        <span class="display-text text-accent pricing-current">Rp {{ number_format($price, 0, ',', '.') }}</span>
+                    <div class="pricing-compare">
+                        <div class="price-row">
+                            <span class="price-row-label">Harga Normal</span>
+                            <span class="price-row-value cross">Rp {{ number_format($priceNormal, 0, ',', '.') }}</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-row-label">Harga Diskon Launching</span>
+                            <span class="price-row-value cross">Rp {{ number_format($priceDiscount, 0, ',', '.') }}</span>
+                        </div>
+                        <div class="price-row price-row-promo">
+                            <span class="badge badge-promo">PROMO 100 PEMBELI PERTAMA</span>
+                            <div class="price-row-final">
+                                <span class="price-row-label">Spesial 100 Pembeli Pertama</span>
+                                <span class="display-text text-accent pricing-current">Rp {{ number_format($priceSpecial, 0, ',', '.') }}</span>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-center text-muted">Harga promo — berlaku sampai batas waktu yang ditentukan</p>
+                    <p class="text-center text-muted mt-sm" style="font-size:14px;">
+                        Khusus untuk 100 pembeli pertama, Anda bisa mendapatkan Ultimate ChatGPT Mastery hanya Rp4.900.
+                        Setelah kuota promo habis, harga akan naik ke Rp49.000, lalu kembali ke harga normal Rp490.000.
+                    </p>
                 </div>
                 <div class="pricing-badges">
                     <span class="badge badge-verified">&#10003; Pembayaran QRIS manual</span>
@@ -195,7 +222,7 @@
                                    placeholder="08123456789" required maxlength="32">
                             <div class="error-text" id="whatsapp-error" role="alert"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-full btn-hero" data-umami-event="CTA Click">Dapatkan Sekarang</button>
+                        <button type="submit" class="btn btn-primary btn-full btn-hero" data-umami-event="CTA Click">Dapatkan Sekarang — Rp4.900</button>
                         <p class="text-center text-muted mt-sm" style="font-size:14px;">
                             &#10003; QRIS manual &middot; Download setelah verifikasi
                         </p>

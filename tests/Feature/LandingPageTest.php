@@ -22,7 +22,7 @@ class LandingPageTest extends TestCase
 
         $response->assertSee('Ultimate ChatGPT Mastery & Prompt Swipe File');
         $response->assertSee('Dapatkan Sekarang');
-        $response->assertSee('Rp 99.000');
+        $response->assertSee('Rp 4.900');
     }
 
     public function test_landing_page_contains_lead_magnet_copy(): void
@@ -74,7 +74,7 @@ class LandingPageTest extends TestCase
     {
         $response = $this->get(route('landing'));
 
-        $response->assertSee('Rp 499.000');
+        $response->assertSee('Rp 490.000');
     }
 
     public function test_landing_page_contains_countdown(): void

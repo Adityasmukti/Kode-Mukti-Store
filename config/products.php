@@ -19,14 +19,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Product Price
+    | Pricing Tiers (Rupiah, integer)
     |--------------------------------------------------------------------------
     |
-    | Fixed price in Rupiah (integer, cents-free). Decision D-11 sets this at
-    | Rp 99.000. Override via PRODUCT_PRICE env for promotions.
+    | Tiga level harga:
+    | - price_normal:   Rp 490.000 — Harga normal
+    | - price_discount: Rp 49.000  — Harga diskon launching
+    | - price_special:  Rp 4.900   — Harga spesial 100 pembeli pertama (aktif)
+    |
+    | 'price' adalah harga yang dibayar saat ini. Override via PRODUCT_PRICE env.
     |
     */
-    'price' => (int) env('PRODUCT_PRICE', 49000),
+    'price' => (int) env('PRODUCT_PRICE', 4900),
+    'price_normal' => 490000,
+    'price_discount' => 49000,
+    'price_special' => 4900,
 
     /*
     |--------------------------------------------------------------------------

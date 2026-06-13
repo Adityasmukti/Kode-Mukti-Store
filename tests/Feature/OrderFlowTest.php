@@ -76,7 +76,7 @@ class OrderFlowTest extends TestCase
         // Check pending status badge
         $response->assertSee('Menunggu Pembayaran');
         // Check amount
-        $response->assertSee('Rp 99.000');
+        $response->assertSee('Rp 4.900');
         // Check QRIS image area
         $response->assertSee('/images/qris.png');
         // Check payment steps (case-insensitive by using escaped=false with manual check)
@@ -119,7 +119,7 @@ class OrderFlowTest extends TestCase
         // Check re-upload is visible but secondary (upload section exists)
         $response->assertSee('Upload Ulang');
         // QRIS and amount still visible
-        $response->assertSee('Rp 99.000');
+        $response->assertSee('Rp 4.900');
         $response->assertSee('/images/qris.png');
     }
 

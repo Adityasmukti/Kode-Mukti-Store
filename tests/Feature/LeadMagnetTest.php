@@ -76,7 +76,7 @@ class LeadMagnetTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Download 50 Prompt Pemasaran Gratis');
         $response->assertSee('Download Lead Magnet');
-        $response->assertSee('Lihat Ebook Rp 99.000');
+        $response->assertSee('Rp 49.000');
     }
 
     public function test_download_page_with_invalid_token_returns_404(): void
