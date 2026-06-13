@@ -202,4 +202,67 @@ class ScaffoldSmokeTest extends TestCase
         $response->assertRedirect();
         $response->assertRedirectContains('admin/login');
     }
+
+    public function test_private_assets_and_ui_tokens(): void
+    {
+        // 1. Verify protected files exist on local private disk
+        $this->assertFileExists(
+            storage_path('app/private/products/Ultimate-ChatGPT-Mastery-Bundle.zip'),
+            'Product ZIP must exist on private disk'
+        );
+        $this->assertFileExists(
+            storage_path('app/private/lead-magnets/50-prompt-pemasaran-gratis.txt'),
+            'Lead magnet file must exist on private disk'
+        );
+        $this->assertFileExists(
+            public_path('images/qris.png'),
+            'QRIS placeholder must exist in public/images'
+        );
+
+        // 2. Verify paid/lead assets are NOT under public/storage
+        $this->assertFileDoesNotExist(
+            storage_path('app/public/products/Ultimate-ChatGPT-Mastery-Bundle.zip'),
+            'Product ZIP must not be under public/storage'
+        );
+        $this->assertFileDoesNotExist(
+            storage_path('app/public/lead-magnets/50-prompt-pemasaran-gratis.txt'),
+            'Lead magnet must not be under public/storage'
+        );
+
+        // 3. Verify layout file contains viewport meta, CSRF meta, and title region
+        $layoutPath = base_path('resources/views/layouts/app.blade.php');
+        $this->assertFileExists($layoutPath);
+        $layout = file_get_contents($layoutPath);
+
+        $this->assertStringContainsString(
+            'name="viewport"',
+            $layout,
+            'Layout must contain viewport meta tag'
+        );
+        $this->assertStringContainsString(
+            'name="csrf-token"',
+            $layout,
+            'Layout must contain CSRF meta tag'
+        );
+        $this->assertStringContainsString(
+            "<title>",
+            $layout,
+            'Layout must contain title region'
+        );
+        $this->assertStringContainsString(
+            "@yield('content')",
+            $layout,
+            'Layout must contain @yield content area'
+        );
+
+        // 4. Verify CSS contains all required UI tokens
+        $css = file_get_contents(base_path('resources/css/app.css'));
+
+        $this->assertStringContainsString('#FFF7ED', $css, 'CSS must contain background color #FFF7ED');
+        $this->assertStringContainsString('#FFFFFF', $css, 'CSS must contain card color #FFFFFF');
+        $this->assertStringContainsString('#F97316', $css, 'CSS must contain accent color #F97316');
+        $this->assertStringContainsString('#DC2626', $css, 'CSS must contain destructive color #DC2626');
+        $this->assertStringContainsString('44px', $css, 'CSS must declare minimum 44px control height');
+        $this->assertStringContainsString('ui-sans-serif', $css, 'CSS must use system UI font stack');
+    }
 }
