@@ -8,6 +8,8 @@ class OrderPortalController extends Controller
 {
     public function show(string $invoiceToken)
     {
-        // Business logic will be implemented in Plan 01-05
+        $order = Order::where('invoice_token', $invoiceToken)->firstOrFail();
+
+        return view('orders.show', compact('order'));
     }
 }
