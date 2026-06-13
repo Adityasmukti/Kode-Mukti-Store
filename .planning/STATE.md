@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: active
-last_updated: "2026-06-12T18:23:30Z"
+last_updated: "2026-06-13T07:10:00Z"
 progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 6
-  completed_plans: 2
-  percent: 33
+  completed_plans: 3
+  percent: 50
 ---
 
 # State
@@ -20,9 +20,9 @@ Project planning initialized for MVP landing page.
 
 ## Last Session
 
-- Stopped at: Phase 01 Plan 02 complete (data contracts)
-- Resume file: `.planning/phases/01-mvp-landing-page-dan-qris-manual/01-03-PLAN.md`
-- Updated: 2026-06-12
+- Stopped at: Phase 01 Plan 03 complete (asset fixtures, layout, CSS tokens, test fixtures)
+- Resume file: `.planning/phases/01-mvp-landing-page-dan-qris-manual/01-04-PLAN.md`
+- Updated: 2026-06-13
 
 ## Accumulated Context
 
@@ -45,3 +45,6 @@ Project planning initialized for MVP landing page.
 - Public buyer routes use {invoice_token} or {download_token} per D-01, never numeric IDs.
 - UploadPaymentProofRequest enforces mimes:jpg,jpeg,png,webp with max:4096 per D-08.
 - RejectPaymentRequest enforces reject_reason required string max:500 per D-07.
+- Plain CSS design tokens replace Tailwind import per UI-SPEC contract (no component frameworks).
+- Python Pillow used instead of PHP GD for fixture/placeholder image creation.
+- Private asset files force-added to git despite storage/.gitignore for development fixture reproducibility.
