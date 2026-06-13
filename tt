@@ -1,3 +1,0 @@
-#!/bin/bash
-# Quick test runner with SQLite extension loading
-PHP_INI_SCAN_DIR="/etc/php/8.3/cli/conf.d:/tmp/php-sqlite-ini" php artisan test "$@"
