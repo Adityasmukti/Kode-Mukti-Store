@@ -69,3 +69,12 @@ Phase 02 complete — all 2 plans implemented. Umami analytics Docker Compose (d
 - Server-side event logging via Log::info('Umami Event: ...') di controllers.
 - Landing page CSS diekstrak ke resources/css/landing.css, di-bundle via Vite.
 - A/B testing framework deferred — masih perlu diskusi pendekatan.
+- Setelah upload bukti bayar, pelanggan diarahkan kirim konfirmasi WA ke 087873507353 via tombol auto-message wa.me.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 20260613-001 | Tambah instruksi WA konfirmasi setelah upload bukti bayar | 2026-06-13 | fa884fb | [./quick/20260613-001-wa-konfirmasi-upload/](./quick/20260613-001-wa-konfirmasi-upload/) |
+
+Last activity: 2026-06-13 - Completed quick task 20260613-001: Tambah instruksi WA konfirmasi setelah upload bukti bayar
