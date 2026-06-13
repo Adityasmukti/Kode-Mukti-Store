@@ -8,7 +8,7 @@ progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 6
-  completed_plans: 5
+  completed_plans: 6
   percent: 0
 ---
 
@@ -16,12 +16,12 @@ progress:
 
 ## Current Status
 
-Phase 01 Plan 05 complete — buyer order creation, QRIS invoice page, and proof upload/re-upload workflow implemented.
+Phase 01 complete — all 6 plans implemented. Admin authentication, manual payment verification, proof preview, protected ZIP download, and full test suite (54 tests, 258 assertions).
 
 ## Last Session
 
-- Stopped at: Phase 01 Plan 05 complete (buyer order, QRIS invoice, proof upload)
-- Resume file: `.planning/phases/01-mvp-landing-page-dan-qris-manual/01-06-PLAN.md`
+- Stopped at: Phase 01 Plan 06 complete (admin auth, verification, protected download)
+- Resume file: (Phase 01 complete — next is Phase 02)
 - Updated: 2026-06-13
 
 ## Accumulated Context
@@ -57,3 +57,7 @@ Phase 01 Plan 05 complete — buyer order creation, QRIS invoice page, and proof
 - Proof files stored on local (private) disk; never public or symlinked.
 - PaymentProof records created via hasMany relationship for history preservation (T-01-18).
 - Blade view renders all 4 states in single template with @if/@elseif branches.
+- Admin logout route middleware fixed from guest to auth (was preventing logout).
+- HTML details/summary used for Reject form reveal (no JS required).
+- CASE WHEN in ORDER BY for status priority sorting (SQLite + MySQL compatible).
+- DownloadController streams ZIP from local private disk after verified status check; no expiry or temporary URLs.

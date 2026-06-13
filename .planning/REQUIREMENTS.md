@@ -9,8 +9,8 @@ Acceptance criteria:
 - [x] Pengunjung dapat membuat order dengan mengisi data minimal: nama, email, dan nomor WhatsApp.
 - [x] Sistem menampilkan QRIS sebagai metode pembayaran manual untuk nominal Rp 99.000.
 - [x] Pengunjung dapat mengunggah bukti pembayaran setelah membayar melalui QRIS.
-- [ ] Admin dapat melihat order pending dan mengonfirmasi pembayaran secara manual.
-- [ ] Setelah pembayaran dikonfirmasi, halaman download ebook aktif untuk pembeli tersebut.
+- [x] Admin dapat melihat order pending dan mengonfirmasi pembayaran secara manual.
+- [x] Setelah pembayaran dikonfirmasi, halaman download ebook aktif untuk pembeli tersebut.
 
 ## REQ-002: Lead Magnet Instant Download
 

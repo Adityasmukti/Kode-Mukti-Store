@@ -29,10 +29,10 @@ Plans:
 - [x] 01-03-PLAN.md — Private asset fixtures, base Blade layout, CSS design tokens, test fixture files (wave 2)
 - [x] 01-04-PLAN.md — Public landing page and lead magnet instant download flow (wave 3)
 - [x] 01-05-PLAN.md — Buyer order, QRIS invoice states, and private proof upload/re-upload (wave 3)
-- [ ] 01-06-PLAN.md — Admin login/dashboard, confirm/reject, proof preview route, and protected ebook ZIP download (wave 4)
+- [x] 01-06-PLAN.md — Admin login/dashboard, confirm/reject, proof preview route, and protected ebook ZIP download (wave 4)
 
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. MVP Landing Page dan QRIS Manual | 5/6 | In progress | - |
+| 1. MVP Landing Page dan QRIS Manual | 6/6 | ✅ Complete | 2026-06-13 |
