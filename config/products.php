@@ -48,7 +48,7 @@ return [
     | magnet controller streams this file using Storage::disk('local').
     |
     */
-    'lead_magnet_path' => env('PRODUCT_LEAD_MAGNET_PATH', 'lead-magnets/50-prompt-pemasaran-gratis.txt'),
+    'lead_magnet_path' => env('PRODUCT_LEAD_MAGNET_PATH', 'lead-magnets/50-prompt-pemasaran-gratis.pdf'),
 
     /*
     |--------------------------------------------------------------------------

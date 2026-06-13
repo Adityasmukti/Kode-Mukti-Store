@@ -55,7 +55,7 @@ class LeadMagnetController extends Controller
 
         return \Illuminate\Support\Facades\Storage::disk('local')->download(
             $leadMagnetPath,
-            '50-prompt-pemasaran-gratis.txt'
+            '50-prompt-pemasaran-gratis.pdf'
         );
     }
 

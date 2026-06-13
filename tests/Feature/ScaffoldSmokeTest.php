@@ -211,7 +211,7 @@ class ScaffoldSmokeTest extends TestCase
             'Product ZIP must exist on private disk'
         );
         $this->assertFileExists(
-            storage_path('app/private/lead-magnets/50-prompt-pemasaran-gratis.txt'),
+            storage_path('app/private/lead-magnets/50-prompt-pemasaran-gratis.pdf'),
             'Lead magnet file must exist on private disk'
         );
         $this->assertFileExists(
@@ -225,7 +225,7 @@ class ScaffoldSmokeTest extends TestCase
             'Product ZIP must not be under public/storage'
         );
         $this->assertFileDoesNotExist(
-            storage_path('app/public/lead-magnets/50-prompt-pemasaran-gratis.txt'),
+            storage_path('app/public/lead-magnets/50-prompt-pemasaran-gratis.pdf'),
             'Lead magnet must not be under public/storage'
         );
 

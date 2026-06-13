@@ -20,7 +20,7 @@
                 </a>
 
                 <p class="text-muted mt-sm" style="font-size:14px;">
-                    &#10003; File TXT &middot; Siap pakai &middot; 50 prompt pemasaran
+                    &#10003; File PDF &middot; Siap pakai &middot; 50 prompt pemasaran
                 </p>
             </div>
 

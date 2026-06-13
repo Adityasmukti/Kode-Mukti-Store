@@ -97,7 +97,7 @@ class LeadMagnetTest extends TestCase
         $response = $this->get(route('lead-magnet.download', $lead->download_token));
 
         $response->assertStatus(200);
-        $response->assertDownload('50-prompt-pemasaran-gratis.txt');
+        $response->assertDownload('50-prompt-pemasaran-gratis.pdf');
     }
 
     public function test_download_file_with_invalid_token_returns_404(): void
