@@ -3,25 +3,25 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: active
-last_updated: "2026-06-13T07:10:00Z"
+last_updated: "2026-06-13T07:30:00Z"
 progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 6
-  completed_plans: 3
-  percent: 50
+  completed_plans: 5
+  percent: 83
 ---
 
 # State
 
 ## Current Status
 
-Project planning initialized for MVP landing page.
+Phase 01 Plan 04 complete — PAS landing page, lead magnet capture, and download flow implemented.
 
 ## Last Session
 
-- Stopped at: Phase 01 Plan 03 complete (asset fixtures, layout, CSS tokens, test fixtures)
-- Resume file: `.planning/phases/01-mvp-landing-page-dan-qris-manual/01-04-PLAN.md`
+- Stopped at: Phase 01 Plan 04 complete (landing page, lead magnet capture, download page)
+- Resume file: `.planning/phases/01-mvp-landing-page-dan-qris-manual/01-05-PLAN.md`
 - Updated: 2026-06-13
 
 ## Accumulated Context
@@ -48,3 +48,7 @@ Project planning initialized for MVP landing page.
 - Plain CSS design tokens replace Tailwind import per UI-SPEC contract (no component frameworks).
 - Python Pillow used instead of PHP GD for fixture/placeholder image creation.
 - Private asset files force-added to git despite storage/.gitignore for development fixture reproducibility.
+- Named rate limiters defined in AppServiceProvider@boot for orders, uploads, leads, login (10-5 per minute per IP).
+- Lead token uses 48-char Str::random high-entropy token, uniqueness verified before save.
+- Original price Rp 499.000 hardcoded in LandingPageController for strikethrough anchoring effect.
+- Vite manifest stub in public/build/ for test environment (no npm build required).
