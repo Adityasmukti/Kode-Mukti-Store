@@ -168,19 +168,109 @@ class AdminVerificationTest extends TestCase
 
     public function test_confirm_and_reject_actions(): void
     {
-        // Task 2 test — placeholder for now; will be expanded in Task 2 RED
-        // This should fail because OrderVerificationController is still a shell
+        // Create an order in proof_submitted state with a payment proof
         $order = Order::create([
             'invoice_token' => \Illuminate\Support\Str::random(32),
-            'name' => 'Test',
-            'email' => 'test@example.com',
+            'name' => 'Bayu Test',
+            'email' => 'bayu@example.com',
             'whatsapp' => '08123456789',
             'amount' => 99000,
             'status' => 'proof_submitted',
         ]);
 
-        // Guest cannot confirm
+        Storage::fake('local');
+        $fixture = base_path('tests/Fixtures/proofs/sample-proof.jpg');
+        $storedPath = Storage::disk('local')->putFileAs(
+            'payment-proofs/' . $order->invoice_token,
+            new UploadedFile($fixture, 'proof.jpg', 'image/jpeg', null, true),
+            'proof.jpg'
+        );
+
+        $proof = PaymentProof::create([
+            'order_id' => $order->id,
+            'disk' => 'local',
+            'path' => $storedPath,
+            'mime' => 'image/jpeg',
+            'size' => filesize($fixture),
+            'status' => 'submitted',
+        ]);
+
+        // 1. Guest cannot confirm (redirected to login)
         $this->post(route('admin.orders.confirm', $order))
             ->assertRedirect(route('admin.login'));
+
+        // 2. Guest cannot reject (redirected to login)
+        $this->post(route('admin.orders.reject', $order), [
+            'reject_reason' => 'Bukti kurang jelas',
+        ])->assertRedirect(route('admin.login'));
+
+        // 3. Non-admin user cannot confirm
+        $nonAdmin = User::factory()->create(['is_admin' => false]);
+        $this->actingAs($nonAdmin)
+            ->post(route('admin.orders.confirm', $order))
+            ->assertStatus(403);
+
+        // 4. Non-admin user cannot reject
+        $this->actingAs($nonAdmin)
+            ->post(route('admin.orders.reject', $order), [
+                'reject_reason' => 'Alasan',
+            ])->assertStatus(403);
+
+        // 5. Admin confirm: changes status to verified, sets audit fields, marks proof accepted
+        $this->actingAs($this->admin);
+        $this->post(route('admin.orders.confirm', $order))
+            ->assertRedirect(route('admin.orders.index'));
+
+        $order->refresh();
+        $proof->refresh();
+
+        $this->assertEquals('verified', $order->status);
+        $this->assertNotNull($order->verified_at);
+        $this->assertEquals($this->admin->id, $order->verified_by);
+        $this->assertNull($order->reject_reason);
+        $this->assertEquals('accepted', $proof->status);
+
+        // 6. Admin reject: requires reason, stores reason, marks proof rejected
+        $order2 = Order::create([
+            'invoice_token' => \Illuminate\Support\Str::random(32),
+            'name' => 'Citra Test',
+            'email' => 'citra@example.com',
+            'whatsapp' => '08222222222',
+            'amount' => 99000,
+            'status' => 'proof_submitted',
+        ]);
+
+        $storedPath2 = Storage::disk('local')->putFileAs(
+            'payment-proofs/' . $order2->invoice_token,
+            new UploadedFile($fixture, 'proof2.jpg', 'image/jpeg', null, true),
+            'proof2.jpg'
+        );
+
+        $proof2 = PaymentProof::create([
+            'order_id' => $order2->id,
+            'disk' => 'local',
+            'path' => $storedPath2,
+            'mime' => 'image/jpeg',
+            'size' => filesize($fixture),
+            'status' => 'submitted',
+        ]);
+
+        // 7. Reject without reason fails validation
+        $this->post(route('admin.orders.reject', $order2), [])
+            ->assertSessionHasErrors(['reject_reason']);
+
+        // 8. Reject with reason succeeds
+        $this->post(route('admin.orders.reject', $order2), [
+            'reject_reason' => 'Nominal tidak sesuai. Harap upload ulang dengan nominal yang benar.',
+        ])->assertRedirect(route('admin.orders.index'));
+
+        $order2->refresh();
+        $proof2->refresh();
+
+        $this->assertEquals('rejected', $order2->status);
+        $this->assertEquals('Nominal tidak sesuai. Harap upload ulang dengan nominal yang benar.', $order2->reject_reason);
+        $this->assertNull($order2->verified_at);
+        $this->assertNull($order2->verified_by);
+        $this->assertEquals('rejected', $proof2->status);
     }
 }
