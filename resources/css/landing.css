@@ -11,6 +11,10 @@
 .hero-headline {
     margin: 0 0 16px;
 }
+.hero-logo {
+    display: block;
+    margin-bottom: 16px;
+}
 .hero-subcopy {
     margin: 0 0 24px;
     max-width: 560px;

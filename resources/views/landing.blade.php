@@ -8,6 +8,11 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-copy">
+                    <img src="/images/logo.png"
+                         alt="Kode Mukti"
+                         width="80" height="80"
+                         class="hero-logo"
+                         loading="eager">
                     <h1 class="display-text hero-headline">
                         Hemat 100+ Jam Setiap Bulan — <span class="text-accent">Tanpa Pusing Mikirin Prompt</span>
                     </h1>
