@@ -42,6 +42,7 @@ class LeadMagnetController extends Controller
 
         return view('lead-magnet.show', [
             'lead' => $lead,
+            'isSpecial' => $this->isSpecialEdition(),
         ]);
     }
 
@@ -49,7 +50,9 @@ class LeadMagnetController extends Controller
     {
         $lead = Lead::where('download_token', $downloadToken)->firstOrFail();
 
-        $leadMagnetPath = config('products.lead_magnet_path');
+        $leadMagnetPath = $this->isSpecialEdition()
+            ? 'lead-magnets/50-prompt-pemasaran-gratis-100.pdf'
+            : config('products.lead_magnet_path');
 
         abort_unless(\Illuminate\Support\Facades\Storage::disk('local')->exists($leadMagnetPath), 404);
 
@@ -57,6 +60,11 @@ class LeadMagnetController extends Controller
             $leadMagnetPath,
             '50-prompt-pemasaran-gratis.pdf'
         );
+    }
+
+    private function isSpecialEdition(): bool
+    {
+        return Lead::count() <= 100;
     }
 
     private function generateUniqueToken(): string

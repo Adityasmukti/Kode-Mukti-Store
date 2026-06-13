@@ -7,6 +7,11 @@
         <div class="container">
             {{-- Download Card --}}
             <div class="card download-card text-center">
+                @if($isSpecial)
+                <div class="download-badge">
+                    <span class="badge badge-promo">EDISI SPESIAL — 100 PERTAMA</span>
+                </div>
+                @endif
                 <div class="download-icon">&#128229;</div>
                 <h1 class="heading-text">Download 50 Prompt Pemasaran Gratis</h1>
                 <p class="body-text text-secondary">

@@ -91,6 +91,7 @@ class LeadMagnetTest extends TestCase
         Storage::fake('local');
         $leadMagnetPath = config('products.lead_magnet_path');
         Storage::disk('local')->put($leadMagnetPath, 'fake prompt content');
+        Storage::disk('local')->put('lead-magnets/50-prompt-pemasaran-gratis-100.pdf', 'fake special prompt content');
 
         $lead = Lead::factory()->create();
 
