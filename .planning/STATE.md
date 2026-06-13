@@ -3,25 +3,25 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: active
-last_updated: "2026-06-13T07:30:00Z"
+last_updated: "2026-06-13T07:24:00Z"
 progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 6
   completed_plans: 5
-  percent: 83
+  percent: 0
 ---
 
 # State
 
 ## Current Status
 
-Phase 01 Plan 04 complete — PAS landing page, lead magnet capture, and download flow implemented.
+Phase 01 Plan 05 complete — buyer order creation, QRIS invoice page, and proof upload/re-upload workflow implemented.
 
 ## Last Session
 
-- Stopped at: Phase 01 Plan 04 complete (landing page, lead magnet capture, download page)
-- Resume file: `.planning/phases/01-mvp-landing-page-dan-qris-manual/01-05-PLAN.md`
+- Stopped at: Phase 01 Plan 05 complete (buyer order, QRIS invoice, proof upload)
+- Resume file: `.planning/phases/01-mvp-landing-page-dan-qris-manual/01-06-PLAN.md`
 - Updated: 2026-06-13
 
 ## Accumulated Context
@@ -52,3 +52,8 @@ Phase 01 Plan 04 complete — PAS landing page, lead magnet capture, and downloa
 - Lead token uses 48-char Str::random high-entropy token, uniqueness verified before save.
 - Original price Rp 499.000 hardcoded in LandingPageController for strikethrough anchoring effect.
 - Vite manifest stub in public/build/ for test environment (no npm build required).
+- Fixture-based image upload tests: sample-proof.jpg copied to temp files with correct MIME types (no PHP GD required).
+- Str::random(32) for invoice_token: high-entropy, URL-safe, non-numeric.
+- Proof files stored on local (private) disk; never public or symlinked.
+- PaymentProof records created via hasMany relationship for history preservation (T-01-18).
+- Blade view renders all 4 states in single template with @if/@elseif branches.
