@@ -32,10 +32,10 @@
                     produktivitas — tinggal <em>copy-paste</em>, hasil langsung optimal.
                 </p>
                 <div class="upsell-price">
-                    <span class="display-text text-accent">Rp 99.000</span>
+                    <span class="display-text text-accent">Rp 49.000</span>
                 </div>
                 <a href="{{ route('landing') }}#checkout" class="btn btn-secondary btn-full" data-umami-event="CTA Click">
-                    Lihat Ebook Rp 99.000
+                    Lihat Ebook Rp 49.000
                 </a>
                 <p class="text-muted mt-sm" style="font-size:14px;">
                     &#10003; QRIS manual &middot; Download setelah verifikasi &middot; Tanpa login

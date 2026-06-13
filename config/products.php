@@ -26,7 +26,7 @@ return [
     | Rp 99.000. Override via PRODUCT_PRICE env for promotions.
     |
     */
-    'price' => (int) env('PRODUCT_PRICE', 99000),
+    'price' => (int) env('PRODUCT_PRICE', 49000),
 
     /*
     |--------------------------------------------------------------------------
