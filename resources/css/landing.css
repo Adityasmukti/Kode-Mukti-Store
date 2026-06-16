@@ -260,6 +260,26 @@
     margin-right: auto;
 }
 
+/* Audience Section */
+.section-audience {
+    background: var(--color-card);
+}
+.audience-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+}
+.audience-card {
+    text-align: left;
+    padding: 20px;
+}
+.audience-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 8px;
+}
+
 /* Desktop */
 @media (min-width: 768px) {
     .hero {
@@ -277,8 +297,9 @@
     }
     .problems-grid,
     .benefits-grid,
-    .preview-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .preview-grid,
+    .audience-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
     .faq-list {
         grid-template-columns: 1fr 1fr;

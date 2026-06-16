@@ -45,6 +45,7 @@ Plans:
 Plans:
 - [x] 02-01-PLAN.md — Umami analytics Docker Compose, tracking script, conversion events, tests
 - [x] 02-02-PLAN.md — Performance optimization: CSS extraction, lazy loading, meta tags, preconnect, production build
+- [x] ~~02-03-PLAN.md~~ (quick task) — SEO audit: sitemap.xml, robots.txt, canonical, OG/Twitter, JSON-LD, H1 fix, target audience section
 
 **Deferred**: A/B testing framework — masih perlu diskusi pendekatan (custom Laravel vs third-party)
 

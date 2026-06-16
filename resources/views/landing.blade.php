@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Ultimate ChatGPT Mastery & Prompt Swipe File — Kode Mukti')
+@section('title', '15.000+ Prompt ChatGPT Siap Pakai | Kode Mukti')
+@section('meta_description', 'Dapatkan 15.000+ prompt ChatGPT siap pakai untuk bisnis, konten, marketing, produktivitas, dan ide digital. Cocok untuk pemula AI dan kreator konten.')
+@section('og_title', '15.000+ Prompt ChatGPT Siap Pakai - Kode Mukti')
+@section('og_description', 'Bundle 15.000+ prompt ChatGPT siap pakai untuk bisnis, marketing, konten, dan produktivitas. Tinggal copy-paste, hasil langsung maksimal.')
+@section('og_image', url('/images/logo.png'))
 
 @section('content')
     {{-- 1. Hero Section --}}
@@ -14,7 +18,7 @@
                          class="hero-logo"
                          loading="eager">
                     <h1 class="display-text hero-headline">
-                        Hemat 100+ Jam Setiap Bulan — <span class="text-accent">Tanpa Pusing Mikirin Prompt</span>
+                        15.000+ Prompt ChatGPT Siap Pakai untuk <span class="text-accent">Bisnis dan Konten</span>
                     </h1>
                     <p class="body-text hero-subcopy text-secondary">
                         Bundle 15.000+ prompt siap pakai untuk konten marketing, bisnis, dan produktivitas.
@@ -164,6 +168,47 @@
             <p class="text-center text-muted mt-lg">
                 Format: ZIP bundle berisi file PDF, Excel, dan Markdown.
             </p>
+        </div>
+    </section>
+
+    {{-- 4b. Target Audience Section --}}
+    <section class="section section-audience">
+        <div class="container">
+            <h2 class="heading-text text-center">Untuk Siapa Produk Ini?</h2>
+            <div class="audience-grid">
+                <div class="card audience-card">
+                    <span class="audience-icon">&#128187;</span>
+                    <h3 class="label-text">Pemula AI &amp; Freelancer</h3>
+                    <p class="body-text text-secondary">
+                        Baru belajar prompt AI? Ribuan prompt siap pakai ini akan menghemat waktu riset
+                        dan membantu kamu menghasilkan konten berkualitas tanpa trial-error.
+                    </p>
+                </div>
+                <div class="card audience-card">
+                    <span class="audience-icon">&#127912;</span>
+                    <h3 class="label-text">Kreator Konten</h3>
+                    <p class="body-text text-secondary">
+                        Butuh ide segar setiap hari? Prompt untuk caption, thread, script YouTube,
+                        TikTok, dan Reels sudah tersedia — tinggal pilih dan pakai.
+                    </p>
+                </div>
+                <div class="card audience-card">
+                    <span class="audience-icon">&#128188;</span>
+                    <h3 class="label-text">Digital Marketer</h3>
+                    <p class="body-text text-secondary">
+                        Copywriting iklan, email marketing, sales script, dan strategi konten —
+                        semua ada dalam satu bundle. Tingkatkan konversi dengan prompt teruji.
+                    </p>
+                </div>
+                <div class="card audience-card">
+                    <span class="audience-icon">&#128176;</span>
+                    <h3 class="label-text">Pemilik Bisnis Kecil</h3>
+                    <p class="body-text text-secondary">
+                        Jalankan bisnis tanpa harus jadi ahli copywriting. Prompt untuk business
+                        planning, strategi, dan operasional siap membantu kamu.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -343,6 +388,67 @@
 @endpush
 
 @push('scripts')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "15.000+ Prompt ChatGPT - Kode Mukti",
+    "brand": {
+        "@type": "Brand",
+        "name": "Kode Mukti"
+    },
+    "description": "Bundle 15.000+ prompt ChatGPT siap pakai untuk bisnis, konten, marketing, produktivitas, dan ide digital. Termasuk bonus 2.499 prompt dan update 4.600 prompt terbaru.",
+    "category": "Digital Download",
+    "offers": {
+        "@type": "Offer",
+        "priceCurrency": "IDR",
+        "price": "4900",
+        "priceValidUntil": "{{ $promoDeadline }}",
+        "availability": "https://schema.org/InStock",
+        "url": "{{ url()->current() }}#checkout"
+    }
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Bagaimana cara pembayaran?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pembayaran menggunakan QRIS manual. Setelah order, kamu akan melihat kode QRIS untuk bayar. Upload bukti bayar, admin verifikasi, lalu link download aktif."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Berapa lama verifikasi pembayaran?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Admin verifikasi manual dalam 1×24 jam di hari kerja. Kamu akan dapat akses download setelah status berubah menjadi Terverifikasi."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Apakah saya perlu akun atau login?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Tidak. Cukup isi nama, email, WhatsApp, transfer sesuai nominal, upload bukti, tunggu verifikasi. Simpan link invoice karena link itu tetap aktif."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Apa isi file yang saya download?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Satu file ZIP berisi bundle lengkap: 15.000+ prompt, bonus 2.499 prompt, dan update 4.600 prompt dalam format PDF, Excel (.xlsx), dan Markdown (.md)."
+            }
+        }
+    ]
+}
+</script>
 <script>
     (function() {
         var deadline = '{{ $promoDeadline }}';

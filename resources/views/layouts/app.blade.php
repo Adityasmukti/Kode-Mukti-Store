@@ -4,12 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="index, follow">
+    @if(config('services.google.verification'))
+    <meta name="google-site-verification" content="{{ config('services.google.verification') }}">
+    @endif
 
     <title>@yield('title', config('app.name', 'Kode Mukti'))</title>
-    <meta name="description" content="@yield('meta_description', 'Ultimate ChatGPT Mastery & Prompt Swipe File — Bundle 15.000+ prompt siap pakai untuk marketing, bisnis, dan produktivitas.')">
+    <meta name="description" content="@yield('meta_description', 'Dapatkan 15.000+ prompt ChatGPT siap pakai untuk bisnis, konten, marketing, produktivitas, dan ide digital. Cocok untuk pemula AI dan kreator konten.')">
 
+    <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    @hasSection('og_title')
+    <meta property="og:title" content="@yield('og_title')">
+    <meta property="og:description" content="@yield('og_description', 'Dapatkan 15.000+ prompt ChatGPT siap pakai untuk bisnis, konten, marketing, produktivitas, dan ide digital.')">
+    <meta property="og:image" content="@yield('og_image', url('/images/logo.png'))">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:site_name" content="Kode Mukti">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('og_title')">
+    <meta name="twitter:description" content="@yield('og_description', 'Dapatkan 15.000+ prompt ChatGPT siap pakai untuk bisnis, konten, marketing, produktivitas, dan ide digital.')">
+    <meta name="twitter:image" content="@yield('og_image', url('/images/logo.png'))">
+    @endif
 
     @vite('resources/css/app.css')
     @stack('styles')
