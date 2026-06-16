@@ -18,7 +18,17 @@ Route::get('/robots.txt', function () {
 });
 
 Route::get('/sitemap.xml', function () {
-    return response()->view('seo.sitemap')->header('Content-Type', 'application/xml');
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    $xml .= '    <url>' . "\n";
+    $xml .= '        <loc>' . url('/') . '</loc>' . "\n";
+    $xml .= '        <lastmod>' . date('Y-m-d') . '</lastmod>' . "\n";
+    $xml .= '        <changefreq>weekly</changefreq>' . "\n";
+    $xml .= '        <priority>1.0</priority>' . "\n";
+    $xml .= '    </url>' . "\n";
+    $xml .= '</urlset>';
+
+    return response($xml)->header('Content-Type', 'application/xml');
 });
 Route::post('/orders', [OrderController::class, 'store'])
     ->middleware('throttle:orders')
