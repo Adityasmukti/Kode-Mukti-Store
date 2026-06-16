@@ -398,17 +398,17 @@
 @push('scripts')
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "Product",
+    "@@context": "https://schema.org",
+    "@@type": "Product",
     "name": "15.000+ Prompt ChatGPT - Kode Mukti",
     "brand": {
-        "@type": "Brand",
+        "@@type": "Brand",
         "name": "Kode Mukti"
     },
     "description": "Bundle 15.000+ prompt ChatGPT siap pakai untuk bisnis, konten, marketing, produktivitas, dan ide digital. Termasuk bonus 2.499 prompt dan update 4.600 prompt terbaru.",
     "category": "Digital Download",
     "offers": {
-        "@type": "Offer",
+        "@@type": "Offer",
         "priceCurrency": "IDR",
         "price": "4900",
         "priceValidUntil": "{{ $promoDeadline }}",
@@ -419,38 +419,38 @@
 </script>
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
+    "@@context": "https://schema.org",
+    "@@type": "FAQPage",
     "mainEntity": [
         {
-            "@type": "Question",
+            "@@type": "Question",
             "name": "Bagaimana cara pembayaran?",
             "acceptedAnswer": {
-                "@type": "Answer",
+                "@@type": "Answer",
                 "text": "Pembayaran menggunakan QRIS manual. Setelah order, kamu akan melihat kode QRIS untuk bayar. Upload bukti bayar, admin verifikasi, lalu link download aktif."
             }
         },
         {
-            "@type": "Question",
+            "@@type": "Question",
             "name": "Berapa lama verifikasi pembayaran?",
             "acceptedAnswer": {
-                "@type": "Answer",
+                "@@type": "Answer",
                 "text": "Admin verifikasi manual dalam 1×24 jam di hari kerja. Kamu akan dapat akses download setelah status berubah menjadi Terverifikasi."
             }
         },
         {
-            "@type": "Question",
+            "@@type": "Question",
             "name": "Apakah saya perlu akun atau login?",
             "acceptedAnswer": {
-                "@type": "Answer",
+                "@@type": "Answer",
                 "text": "Tidak. Cukup isi nama, email, WhatsApp, transfer sesuai nominal, upload bukti, tunggu verifikasi. Simpan link invoice karena link itu tetap aktif."
             }
         },
         {
-            "@type": "Question",
+            "@@type": "Question",
             "name": "Apa isi file yang saya download?",
             "acceptedAnswer": {
-                "@type": "Answer",
+                "@@type": "Answer",
                 "text": "Satu file ZIP berisi bundle lengkap: 15.000+ prompt, bonus 2.499 prompt, dan update 4.600 prompt dalam format PDF, Excel (.xlsx), dan Markdown (.md)."
             }
         }
