@@ -26,7 +26,7 @@
                         kreator konten, dan profesional yang butuh hasil cepat.
                     </p>
                     <div class="hero-actions">
-                        <div class="price-card-hero">
+                    <div class="price-card-hero">
                             <div class="price-tier">
                                 <span class="price-tier-label">Harga Normal</span>
                                 <span class="price-tier-value cross">Rp {{ number_format($priceNormal, 0, ',', '.') }}</span>
@@ -36,7 +36,11 @@
                                 <span class="price-tier-value cross">Rp {{ number_format($priceDiscount, 0, ',', '.') }}</span>
                             </div>
                             <div class="price-tier price-tier-highlight">
-                                <span class="badge badge-promo">PROMO 100 PEMBELI PERTAMA</span>
+                                @if($isEarlyBird)
+                                    <span class="badge badge-promo">PROMO 100 PEMBELI PERTAMA — Sisa {{ $remainingSlots }} slot</span>
+                                @else
+                                    <span class="badge badge-promo">PROMO HABIS — Harga Normal</span>
+                                @endif
                                 <span class="price-tier-label">Spesial 100 Pembeli Pertama</span>
                                 <span class="price-tier-final display-text text-accent">Rp {{ number_format($priceSpecial, 0, ',', '.') }}</span>
                             </div>
@@ -228,7 +232,11 @@
                             <span class="price-row-value cross">Rp {{ number_format($priceDiscount, 0, ',', '.') }}</span>
                         </div>
                         <div class="price-row price-row-promo">
-                            <span class="badge badge-promo">PROMO 100 PEMBELI PERTAMA</span>
+                            @if($isEarlyBird)
+                                <span class="badge badge-promo">PROMO 100 PEMBELI PERTAMA — Sisa {{ $remainingSlots }} slot</span>
+                            @else
+                                <span class="badge badge-promo">PROMO HABIS — Harga Normal</span>
+                            @endif
                             <div class="price-row-final">
                                 <span class="price-row-label">Spesial 100 Pembeli Pertama</span>
                                 <span class="display-text text-accent pricing-current">Rp {{ number_format($priceSpecial, 0, ',', '.') }}</span>

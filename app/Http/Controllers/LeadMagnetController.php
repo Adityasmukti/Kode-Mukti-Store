@@ -40,9 +40,17 @@ class LeadMagnetController extends Controller
     {
         $lead = Lead::where('download_token', $downloadToken)->firstOrFail();
 
+        $earlyBirdLimit = config('products.early_bird_limit');
+        $orderCount = \App\Models\Order::count();
+        $isEarlyBird = $orderCount < $earlyBirdLimit;
+        $currentPrice = $isEarlyBird
+            ? config('products.early_bird_price')
+            : config('products.price');
+
         return view('lead-magnet.show', [
             'lead' => $lead,
             'isSpecial' => $this->isSpecialEdition(),
+            'currentPrice' => $currentPrice,
         ]);
     }
 

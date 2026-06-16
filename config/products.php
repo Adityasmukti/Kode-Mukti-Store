@@ -37,6 +37,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Early Bird Pricing
+    |--------------------------------------------------------------------------
+    |
+    | First N orders get a discounted price. After the limit is reached,
+    | the regular price applies. Price is always determined server-side.
+    |
+    */
+    'early_bird_price' => (int) env('EARLY_BIRD_PRICE', 4900),
+    'early_bird_limit' => (int) env('EARLY_BIRD_LIMIT', 100),
+
+    /*
+    |--------------------------------------------------------------------------
     | Ebook Bundle ZIP Path
     |--------------------------------------------------------------------------
     |

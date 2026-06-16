@@ -11,18 +11,25 @@ class OrderController extends Controller
 {
     public function store(StoreOrderRequest $request)
     {
+        $earlyBirdLimit = config('products.early_bird_limit');
+        $orderCount = Order::count();
+        $price = $orderCount < $earlyBirdLimit
+            ? config('products.early_bird_price')
+            : config('products.price');
+
         $order = Order::create([
             'invoice_token' => Str::random(32),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'whatsapp' => $request->input('whatsapp'),
-            'amount' => config('products.price', 99000),
+            'amount' => $price,
             'status' => 'pending',
         ]);
 
         Log::info('Umami Event: Order Created', [
             'invoice_token' => $order->invoice_token,
             'email' => $order->email,
+            'amount' => $order->amount,
         ]);
 
         return redirect()->route('orders.show', $order->invoice_token);
