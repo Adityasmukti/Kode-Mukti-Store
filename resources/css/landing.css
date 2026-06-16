@@ -297,7 +297,9 @@
     }
     .problems-grid,
     .benefits-grid,
-    .preview-grid,
+    .preview-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
     .audience-grid {
         grid-template-columns: repeat(4, 1fr);
     }
