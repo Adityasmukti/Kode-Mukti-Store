@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: {{ $sitemapUrl }}
+Sitemap: {{ config('app.url') }}/sitemap.xml

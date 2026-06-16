@@ -12,9 +12,8 @@ use App\Http\Controllers\Admin;
 Route::get('/', LandingPageController::class)->name('landing');
 
 Route::get('/robots.txt', function () {
-    return response()->view('seo.robots', [
-        'sitemapUrl' => url('/sitemap.xml'),
-    ])->header('Content-Type', 'text/plain');
+    return response()->view('seo.robots')
+        ->header('Content-Type', 'text/plain');
 });
 
 Route::get('/sitemap.xml', function () {
